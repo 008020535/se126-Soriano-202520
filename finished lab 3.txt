@@ -1,0 +1,63 @@
+#Marisa Wishart 
+#Lab#3 1D & Parallel Lists
+#January 26, 2025
+#_________________________________________________________________________________
+
+#PROGRAM OUTLINE 
+#A program that evaluates potential voters and produces the corresponding totals \
+
+#VARIBLES 
+#totPro = total processes completed
+#totVote = total votes
+#nonEliReg = non eligible to register
+#canVoteNotReg = can vote but isnt registered
+#canVoteDidntVote = can vote but didnt vote
+#ID = id number
+#age = age of possible voter
+#reg = checks if registered
+#voted = checks if voted
+#--------------------------------------------
+#IMPORTS 
+import csv
+
+#MAIN CODE 
+#INTITALIZE COUNTERS 
+totPro = 0
+nonEliReg = 0
+canVoteNotReg = 0
+canVoteDidntVote = 0
+totVote = 0
+id = [] #EMPTY LIST TO STORE DATA FROM THE CSV FILE 
+age = []
+reg = []
+voted = []
+
+#CONNECTING TO THE FILE 
+with open("C:/Users/Maris/OneDrive - New England Institute of Technology/TERM 2 (2025)/INTERMEDIATE PROG USING PYTHON SE126-02/Lab3-B/voters_202040.csv") as file:
+    data = csv.reader(file)
+    for row in data:          #PROCESS EACH ROW IN THE CSV FILE 
+        id.append(row[0]) 
+        age.append(int(row[1]))
+        reg.append(row[2]) 
+        voted.append(row[3]) 
+        totPro = totPro + 1
+
+    for i in range(totPro):     #CHECKING FOR INDIVIDUALS WHO ARE ELIGIBLE, OLD ENOUGH, DID NOT VOTE AND WHO DID 
+
+        if(reg[i] == "N"):
+            nonEliReg = nonEliReg + 1
+        if(age[i] >= 18 and reg[i] == "N"):
+            canVoteNotReg = canVoteNotReg + 1
+        if(age[i] >= 18 and voted[i] == "N"):
+            canVoteDidntVote = canVoteDidntVote + 1
+        if(voted[i] == "Y"):
+            totVote = totVote + 1
+
+#PRINTING MY RESULTS   
+print("Number of individuals not eligible to register: ",nonEliReg)
+print("Number of individuals who are old enough to vote but have not registered: ",canVoteNotReg)
+print("Number of individuals who are eligible to vote but did not vote: ",canVoteDidntVote)
+print("Number of individuals who did vote: ",totVote)
+print("Number of records processed: ",totPro)
+
+print("\nThank you for using the Voters Registriation Program. GOODBYEEEEEEEEEEEEEE!")
