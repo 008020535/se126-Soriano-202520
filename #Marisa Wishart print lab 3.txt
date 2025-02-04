@@ -1,0 +1,63 @@
+
+#MARISA WISHART 
+#LAB 2 - IN CLASS LAB
+#W2D2 - Text file Handling Review with filters!
+#DATE- JANUARY 13,2025 
+#______________________________________________
+
+#PROGRAM PROMPT:
+
+
+#import of the CSV 
+import csv
+
+#---FUNCITIONS----------------------------------------
+def difference(people,max_cap):
+    '''this function is passed 2 values and returns the difference between them'''
+    diff = max_cap - people
+    return diff
+
+#-----MAIN CODE-------------------------------------
+
+#counting varibles
+tot_rec= 0
+rooms_over = 0
+remaining = 0 
+
+print(f"{'ROOM NAME':20} {'HOLDING CAPACITY':5} {'ATTENDEES':5} {'OVER'}") #FIELD HEADERS for display 
+print("-----------------------------------------------")
+#------connecting to the file--------------------------------
+
+with open("week2/classLab2.csv") as cvsfile:
+    #indent 1 level1! "connected to the file"
+
+    #allow processor to read the file data 
+
+    file = csv.reader(cvsfile)
+
+    #loop through every record (row) in the file 
+    for record in file:
+        #below code occurs for every record (row) in the file (text file!)
+
+        #assign each field data value to a friendly var name
+        room_name = record [0]
+        holding_capacity = int (record [1]) #all text data read as a string, do cast a a num!
+        attendees = int (record [2])
+
+        #call the differnce () to find people over /under capacity 
+        remaining = difference(attendees,holding_capacity)
+
+        #count and display rooms that are over capacity (remaining is negative)
+        if remaining < 0:
+            rooms_over += 1
+            print (f"{'ROOM NAME':20} {'HOLDING CAPACITY':5} {'ATTENDEES':5} {abs(remaining):5}")
+
+        #addition to total_records when counting 
+        tot_rec += 1
+
+#-------connected to file-----------------------
+#display final data (counting vars)
+print(f"\nRooms currently OVER CAPACITY: {rooms_over}")
+print(f"Total rooms in file:{tot_rec}\n\n")
+
+#------disconnecting from the file--------------------------------
