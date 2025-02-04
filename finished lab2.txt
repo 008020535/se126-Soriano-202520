@@ -1,5 +1,5 @@
 
-#MARISA WISHART 
+
 #LAB 2 - IN CLASS LAB
 #W2D2 - Text file Handling Review with filters!
 #DATE- JANUARY 13,2025 
