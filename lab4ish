@@ -1,0 +1,90 @@
+#Michell Soriano
+#Lab 4: Parallel List Processing & Creating/ Writing to Files
+02/03/2025
+#-------------------------------------------------------------------------------
+#Pogram Promt: This is a two part program where you will work on creating and populating parallel lists based on file data, then create and write data to a file 
+
+#Create empty lists to hold the file data.
+fulName = []
+LastName = []
+age = []
+userName = []
+residence = []
+
+#lists for Processing data
+email = []
+department = []
+phoneLine = []
+
+#Used to ensure no duplicate phone extentensions
+tempExt = 0
+
+
+#Counter for employees in each department
+depCount = [0,0,0,0,0,0,]
+
+
+#Openinig my csv file
+with open('got_emails.csv') as csvfile:
+  #read csv file, save result into csvfile:
+  import csv
+  file = csv.reader(csvfile)
+
+
+#Go through each record in the csv file
+for rec in file:
+
+
+  #Go through each record in the csv file
+  for rec in file:
+
+
+    #Go trhough each field in the record 
+    for i in range(0, len(rec)):
+
+  #Match date to parellel lists using the field's index, append to proper list accordingly 
+elif house[i] == "House Baratheon":
+  deparment.append("sales)
+  tempExt = 500
+  depCount[4] +=1
+
+
+  elif house[i} == "the Night's Watch":
+    deparment.append("auditing")
+    tempExt = 600
+    depCount[5] +=1
+
+  #ensure no duplicate ext's
+  while tempExt in phoneExt:
+    tempExt += 1
+
+
+  #Append new extension to list
+  phoneExt.append(tempExt)
+  #Reset temp variable
+  tempExt = 0
+
+
+  #Print with given format 
+  print(f"{fulName[i]:20} {lastName[i]:19} {email[i]:17} {deparment[i]:26} {phoneExt[i]:30}")
+
+
+#Open csv file to write data to
+with open ('westeros.csv','w') as csvfile:
+  #Open with csv writer instead of reader
+  csvwrite = csv.writer(csvfile)
+
+
+  #ilerate through length of parallel lists
+  for i in range(0, len(fulName)):
+    #write data to open csv file as a list
+    row = [fulName[i], lastName[i], email[i], deparment[i], phoneExt[i]]
+    csvwrite.writerow(row)
+
+
+  #Present to user that csv file saved
+  print("\nwesteros.csv saved")
+
+
+  #Print summary of employee distribution accross deparments
+
