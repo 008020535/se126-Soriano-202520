@@ -1,0 +1,112 @@
+#Marisa Wishart 
+#Lab #4 : Parallel List Processing & Creating/Writing to Files
+#January 28,2025 
+#_______________________________________________________________________
+#Project Description: This is a two-part program where you will work on creating and populating parallel lists based on file data, then create and write data to a file
+
+#create empty lists to hold the file data.
+fName = []
+lName = []
+age = []
+screenName = []
+house = []
+
+#lists for processed data
+email = []
+department = []
+phoneExt = []
+
+#Used to ensure no duplicate phone extentensions
+tempExt = 0
+
+#Counter for employees in each department
+depCount = [0, 0, 0, 0, 0, 0]
+
+#Opeing my csv file
+with open('got_emails.csv') as csvfile: 
+    #read csv file, save result into csvread
+    import csv
+    file = csv.reader(csvfile)
+
+    #Go through each record in the csv file
+    for rec in file: 
+
+        #Go through each field in the record
+        for i in range(0, len(rec)): 
+
+            #Match data to parallel lists using the field's index, append to proper list accordingly
+            if i == 0:
+                fName.append(rec[i])
+            elif i == 1:
+                lName.append(rec[i])
+            elif i == 2:
+                age.append(rec[i])
+            elif i == 3:
+                screenName.append(rec[i])
+            elif i == 4:
+                house.append(rec[i])
+            else: #Fallback in case of more than 5 fields in the csv file
+                print("ERROR: incorrect csv format. ") 
+
+for i in range(0, len(screenName)):
+    email.append(screenName[i] + "@westeros.net")
+
+    #Assign department and phone extension according to chart, ext starts at lowest value in range
+    if house[i] == "House Stark":
+        department.append("Research & Development")
+        tempExt = 100
+        depCount[0] += 1
+
+    elif house[i] == "House Targaryen":
+        department.append("Marketing")
+        tempExt = 200
+        depCount[1] += 1
+
+    elif house[i] == "House Tully":
+        department.append("Human Resources")
+        tempExt = 300
+        depCount[2] += 1
+
+    elif house[i] == "House Lannister":
+        department.append("Accounting")
+        tempExt = 400
+        depCount[3] += 1
+
+    elif house[i] == "House Baratheon":
+        department.append("Sales")
+        tempExt = 500
+        depCount[4] += 1
+
+    elif house[i] == "The Night's Watch":
+        department.append("Auditing")
+        tempExt = 600
+        depCount[5] += 1
+
+    #Ensure no duplicate ext's
+    while tempExt in phoneExt:
+        tempExt += 1
+
+    #Append new extension to list
+    phoneExt.append(tempExt)
+    #Reset temp variable
+    tempExt = 0
+
+    #Print with given format
+    print(f"{fName[i]:20} {lName[i]:19} {email[i]:17} {department[i]:25} {phoneExt[i]:30}")
+
+#Open csv file to write data to
+with open('westeros.csv', 'w') as csvfile:
+    #Open with csv writer instead of reader
+    csvwrite = csv.writer(csvfile)
+
+    #Iterate through length of parallel lists
+    for i in range(0, len(fName)):
+        #write data to open csv file as a list
+        row = [fName[i], lName[i], email[i], department[i], phoneExt[i]]
+        csvwrite.writerow(row)
+
+    #Present to user that csv file saved
+    print("\nwesteros.csv saved")
+
+    #Print summary of employee distribution across departments
+    print(f"\nThere are {len(fName)} employees:\n{depCount[0]} in Research & Development,\n{depCount[1]} in Marketing,\n{depCount[2]} in Human Resources,\n{depCount[3]} in Accounting,\n{depCount[4]} in Sales\nand {depCount[0]} in Auditing.")

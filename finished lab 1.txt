@@ -1,0 +1,56 @@
+#Name - Marisa Wishart 
+#Date - January 12th 2025 
+#Lab - 1 
+
+#---------------PROGRAM PROMPT----------------------
+
+#program that determines whether a meeting room is a voilation of fire regulations regarding the maxium room capcity.
+
+#varibles 
+#people = #Number of people attending the metting 
+#max_cap = #max room capacity 
+#space_avaible = #The amount of space avaible in the room  
+
+#asking user for information about the meeting 
+
+def difference (max_cap, people):
+       space_availble  = max_cap - people
+       return space_availble
+
+#checking if i want to contiune my loop
+
+def decision(response):
+    if response != "y":
+        while response != "y" and response != "n":
+            response =  input ("Do you want to contiune (y/n)")
+
+    return response
+
+#my main program with the start of my loop 
+
+any_more_data = "y"
+while(any_more_data=="y"):
+
+    mName =input("What is the meeting name")
+    people = int(input("\n Enter the number of attendees for this meeting:"))
+    max_cap = int(input("\n Enter the maximum capcity of people this room can hold:"))
+
+    #print(difference(max_cap,people))
+    print(mName)
+#all of my else, if and print statements 
+    space_available = difference (max_cap, people)
+    if(space_available < 0):
+        print("room is not within fire safety complience" )
+        space_available = space_available * -1
+        print (f"I need to remove {space_available} people")
+
+    else:
+        print("Room is within fire safety complience" )
+        print(f"{space_available} people can register")
+
+    any_more_data =  decision(input("Do you want to continue (y/n)"))
+print("Thank you for using my programmy peopleeeee GOODBYEEEEEEEEEEEEEEEEEEEEEEEE")
+
+
+
+
