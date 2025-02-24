@@ -1,0 +1,53 @@
+#week8day1
+
+
+#ibelieve this is ordered lists
+#Dictionaries in Python are a collection set similar to associative arrays in JavaScript but also look similar to JS object builds. Most importantly, they store data in key and value pairs. They keys are referred to as properties and the values can be any data type. 
+ #imports----------------------
+
+#main executing code------------------------------
+
+#start by creating a populated dictionary
+
+myCar = {
+    #'key' : value,
+    "make": "ford",
+    "model": "se Hachback",
+    "year": 2014,
+    "name": "Gwendoline",
+    "color": "black",
+    #keys cannot be repeated/NO DUPLICATES ALLOWED  if repeated it will just replace it the value 
+    "color": "red" 
+}
+
+#display the entired dictionary --> 'myCar'
+print(myCar)
+#display just the 'make' and 'model' values of the dictionary 'myCar'
+
+#dictionaryName["keyName"]--> accesses stored value
+#keyname will always be a string index created by developer
+print(f"My car is a {myCar["make"]} {myCar["model"]}")
+
+#keys cannot be repeated within a dictionary but they can be reused across unique dictionary names: myCar vs yourCar
+
+yourCar = {
+    #'key' : value,
+    "make": "GMC",
+    "model": "cayon",
+    "year": 2019,
+    "name": "jolly",
+    "color": "black",
+    "friends": ["Ray","Matt","Ducan"]
+}
+
+print(f"Rob's car is a {yourCar["make"]} {yourCar["model"]}")
+
+#SINCE "FRIENDS" GIVES ACCESS TO A LIST, SECONDARY [] ARE USED TO POINT TO WHICH VALUE IN SAID LIST
+print(f"{yourCar["friends"][2]}")
+
+ #proccesing through a dictionary and its keys   
+for key in yourCar:
+    print(f"{key.upper()} : {yourCar[key]}")    
+
+#add a key and value to a pre-existing dictionary
+yourCar["plate"] = "12345"

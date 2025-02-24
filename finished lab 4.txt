@@ -1,4 +1,4 @@
-#Marisa Wishart 
+
 #Lab #4 : Parallel List Processing & Creating/Writing to Files
 #January 28,2025 
 #_______________________________________________________________________
